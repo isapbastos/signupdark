@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { lightTheme, darkTheme } from './styles/theme'
+import GlobalStyles from './styles/globalStyles'
 
-function App() {
+function App (){
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <div className="container">
+        <GlobalStyles />
+        <h1>Sign up to my newsletter</h1>
+        <input type="email" value="my@email.com"></input>
+        <button className="accent" 
+          onClick={() => setIsDarkTheme(!isDarkTheme)}>
+          Sign up
+        </button>
+      </div >
+    </ThemeProvider>
+  )
 }
 
 export default App;
